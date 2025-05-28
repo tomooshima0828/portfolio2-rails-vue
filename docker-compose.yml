@@ -37,21 +37,21 @@ services:
     tty: true
     stdin_open: true
 
-#  frontend:
-#    container_name: portfolio_frontend
-#    build:
-#      context: ./frontend
-#      dockerfile: Dockerfile
-#    ports:
-#      - "8080:80" # Nginxのデフォルトポート80をホストの8080にマッピング
-#    volumes:
-#      - ./frontend:/usr/src/app # 開発時のホットリロード用 (本番ビルドでは不要な場合あり)
-#      - /usr/src/app/node_modules # node_modulesをホストと共有しない
-#    depends_on:
-#      - backend
-#    environment:
-#      # Rails APIのエンドポイント
-#      VUE_APP_API_BASE_URL: http://localhost:3000/api/v1
+  frontend:
+    container_name: portfolio_frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80" # Nginxのデフォルトポート80をホストの8080にマッピング
+    volumes:
+      - ./frontend:/usr/src/app # 開発時のホットリロード用 (本番ビルドでは不要な場合あり)
+      - /usr/src/app/node_modules # node_modulesをホストと共有しない
+    depends_on:
+      - backend
+    environment:
+      # Rails APIのエンドポイント
+      VUE_APP_API_BASE_URL: http://localhost:3000/api/v1
 
 volumes:
   postgres_data:
