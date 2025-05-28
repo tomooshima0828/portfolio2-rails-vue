@@ -42,8 +42,10 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      target: build-stage
+    command: yarn serve --host 0.0.0.0
     ports:
-      - "8080:80" # Nginxのデフォルトポート80をホストの8080にマッピング
+      - "8080:8080" # Vue CLI dev serverのポート8080をホストの8080にマッピング
     volumes:
       - ./frontend:/usr/src/app # 開発時のホットリロード用 (本番ビルドでは不要な場合あり)
       - /usr/src/app/node_modules # node_modulesをホストと共有しない
