@@ -1,0 +1,58 @@
+services:
+  db:
+    image: postgres:14-alpine
+    container_name: portfolio_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: portfolio_development
+    ports:
+      - "5432:5432"
+    restart: always
+
+  backend:
+    container_name: portfolio_backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - ./backend:/app
+      - bundle_cache:/app/vendor/bundle # Gemのキャッシュ
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      RAILS_ENV: development
+      DATABASE_HOST: db
+      DATABASE_USERNAME: user
+      DATABASE_PASSWORD: password
+      DATABASE_NAME_DEVELOPMENT: portfolio_development
+      DATABASE_NAME_TEST: portfolio_test
+      # Vue.jsアプリのオリジン (CORS設定用)
+      FRONTEND_ORIGIN: http://localhost:8080
+    tty: true
+    stdin_open: true
+
+#  frontend:
+#    container_name: portfolio_frontend
+#    build:
+#      context: ./frontend
+#      dockerfile: Dockerfile
+#    ports:
+#      - "8080:80" # Nginxのデフォルトポート80をホストの8080にマッピング
+#    volumes:
+#      - ./frontend:/usr/src/app # 開発時のホットリロード用 (本番ビルドでは不要な場合あり)
+#      - /usr/src/app/node_modules # node_modulesをホストと共有しない
+#    depends_on:
+#      - backend
+#    environment:
+#      # Rails APIのエンドポイント
+#      VUE_APP_API_BASE_URL: http://localhost:3000/api/v1
+
+volumes:
+  postgres_data:
+  bundle_cache:
