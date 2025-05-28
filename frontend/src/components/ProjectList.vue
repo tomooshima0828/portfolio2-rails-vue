@@ -1,10 +1,10 @@
 <template>
   <div class="project-list">
     <h1>大島智彦のポートフォリオ</h1>
-    <h2>(Rails + Vue.js + Docker)</h2>
+    <h2>Rails + Vue.js + Docker</h2>
     <p>こちらをご覧くださって誠にありがとうございます。今回の募集に合わせて、取り急ぎ作成したアプリケーションになります。</p>
     <p>これまで{{ yearsOfExperience }}年以上の現場経験を積み、主にRuby on RailsとJavaScript(Vue.jsなど)を用いて開発を行ってきました。</p>
-    <p>スキルの詳細は<a :href="skillSheetUrl" target="_blank" rel="noopener noreferrer">スキルシート</a>をご覧ください。</p>
+    <p>※以下はあくまでポートフォリオのアプリケーションとしての簡単な概要の表示になりますので、スキルの詳細は<a :href="skillSheetUrl" target="_blank" rel="noopener noreferrer" class="skill-sheet-link">スキルシート</a>をぜひご覧ください。</p>
     <h2>これまで参画したプロジェクト一覧</h2>
     <div v-if="loading" class="loading">Loading projects...</div>
     <div v-if="error" class="error">{{ error }}</div>
@@ -132,6 +132,12 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.skill-sheet-link {
+  font-weight: bold;
+  color: red;
+  font-size: 1.5em;
+}
+
 .project-list {
   font-family: sans-serif;
   max-width: 800px;
