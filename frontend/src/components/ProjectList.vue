@@ -1,11 +1,14 @@
 <template>
   <div class="project-list">
-    <h1>大島智彦のポートフォリオ</h1>
+    <h1>ともさん☆Webエンジニアのポートフォリオ</h1>
     <h2>Rails + Vue.js + Docker</h2>
     <p>こちらをご覧くださって誠にありがとうございます。今回の募集を拝見し、ポートフォリオが無かったため、急遽作成したアプリケーションになりますので、簡素な表示になりますことをご了承ください。バックエンドはRuby on Railsで、フロントエンドはVue.jsで構築しました。Dockerを利用して開発環境を構築しています。</p>
-    <p>これまで{{ yearsOfExperience }}年以上の現場経験を積み、主にRuby on RailsとJavaScript(Vue.jsなど)を用いて開発を行ってきました。</p>
+    <p>私は以前は米軍基地内のクリニックでの医療通訳翻訳の仕事をしておりました。40代になってからプログラミング学習を始めて、フリーランスとしてWebアプリケーションの開発を行ってきました。これまで{{ yearsOfExperience }}年以上の現場経験を積みました。主にRuby on RailsとJavaScript(Vue.jsなど)を用いて開発を行ってきました。</p>
+    <p>なお、このアプリケーションのバックエンド側はRenderを使用してデプロイしており、フロントエンドはVercelを使用してデプロイしております。</p>
     <p>※以下はあくまでポートフォリオのアプリケーションとしての簡単な概要の表示になりますので、スキルの詳細は<a :href="skillSheetUrl" target="_blank" rel="noopener noreferrer" class="skill-sheet-link">スキルシート</a>をぜひご覧ください。</p>
     <p>※このアプリケーションのソースコードは<a :href="githubUrl" target="_blank" rel="noopener noreferrer" class="github-link">GitHub</a>をご覧いただけますと幸いです。</p>
+    <p>※X(Twitter) <a href="https://x.com/tomo_oshima" target="_blank" rel="noopener noreferrer" class="twitter-link">tomo_oshima</a></p>
+    <p>※ブログ <a href="https://yuruyuru-engineers.com/" target="_blank" rel="noopener noreferrer" class="blog-link">ゆるゆるエンジニアルーム</a></p>
     <h2>これまで参画したプロジェクト一覧</h2>
     <div v-if="loading" class="loading">Loading projects...</div>
     <div v-if="error" class="error">{{ error }}</div>
