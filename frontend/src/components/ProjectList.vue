@@ -12,7 +12,7 @@
       <li v-for="project in projects" :key="project.id">
         <h3>{{ project.title }}</h3>
         <p>{{ project.description }}</p>
-        <img v-if="project.image_url" :src="`http://localhost:3000${project.image_url}`" alt="Project Image" style="max-width: 200px;" />
+        <img v-if="project.image_url" :src="`${process.env.VUE_APP_API_BASE_URL}${project.image_url}`" alt="Project Image" style="max-width: 200px;" />
         <p><strong>役割:</strong> {{ project.role }}</p>
         <p><strong>期間:</strong> {{ formatDate(project.start_date) }} - {{ formatDate(project.end_date) }} {{ calculateDuration(project.start_date, project.end_date) }}</p>
         <div v-if="project.technologies && project.technologies.length > 0">
@@ -117,7 +117,7 @@ const yearsOfExperience = computed(() => {
 
 const fetchProjects = async () => {
   try {
-    const response = await axios.get('http://localhost:3000/api/v1/projects');
+    const response = await axios.get(`${process.env.VUE_APP_API_BASE_URL}/api/v1/projects`);
     projects.value = response.data;
   } catch (err) {
     console.error('Error fetching projects:', err);
