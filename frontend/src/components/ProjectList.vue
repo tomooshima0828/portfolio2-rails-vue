@@ -2,9 +2,10 @@
   <div class="project-list">
     <h1>大島智彦のポートフォリオ</h1>
     <h2>Rails + Vue.js + Docker</h2>
-    <p>こちらをご覧くださって誠にありがとうございます。今回の募集に合わせて、取り急ぎ作成したアプリケーションになります。</p>
+    <p>こちらをご覧くださって誠にありがとうございます。今回の募集を拝見し急遽作成したアプリケーションになりますので、簡素な表示になりますことをご了承ください。バックエンドはRuby on Railsで、フロントエンドはVue.jsで構築しました。Dockerを利用して開発環境を構築しています。</p>
     <p>これまで{{ yearsOfExperience }}年以上の現場経験を積み、主にRuby on RailsとJavaScript(Vue.jsなど)を用いて開発を行ってきました。</p>
     <p>※以下はあくまでポートフォリオのアプリケーションとしての簡単な概要の表示になりますので、スキルの詳細は<a :href="skillSheetUrl" target="_blank" rel="noopener noreferrer" class="skill-sheet-link">スキルシート</a>をぜひご覧ください。</p>
+    <p>※このアプリケーションのソースコードは<a :href="githubUrl" target="_blank" rel="noopener noreferrer" class="github-link">GitHub</a>をご覧いただけますと幸いです。</p>
     <h2>これまで参画したプロジェクト一覧</h2>
     <div v-if="loading" class="loading">Loading projects...</div>
     <div v-if="error" class="error">{{ error }}</div>
@@ -30,6 +31,7 @@
 import { ref, onMounted, computed } from 'vue';
 
 const skillSheetUrl = computed(() => process.env.VUE_APP_SKILL_SHEET_URL || '#'); // Fallback to '#' if not set
+const githubUrl = computed(() => process.env.VUE_APP_GITHUB_URL || '#'); // Fallback to '#' if not set
 import axios from 'axios';
 
 const projects = ref([]);
@@ -132,7 +134,7 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.skill-sheet-link {
+.skill-sheet-link, .github-link {
   font-weight: bold;
   color: red;
   font-size: 1.5em;
